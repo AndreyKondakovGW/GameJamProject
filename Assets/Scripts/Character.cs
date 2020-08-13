@@ -13,6 +13,8 @@ public class Character : Unit
     
     private bool IsGrounded = false;
 
+
+    public AudioSource StepSoud;
     
 
     //private CharState State
@@ -46,6 +48,8 @@ public class Character : Unit
 
         if (Input.GetButton("Horizontal")) Run();
         if (Input.GetButtonDown("Jump")) Jump();
+        if (Input.GetButtonDown("Horizontal")) StepSoud.Play();
+        if (Input.GetButtonUp("Horizontal")) StepSoud.Stop();
     }
 
     private void Run()
@@ -55,7 +59,7 @@ public class Character : Unit
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
 
         sprite.flipX = direction.x < 0.0F;
-
+   
         //State = CharState.Move;
     }
 
