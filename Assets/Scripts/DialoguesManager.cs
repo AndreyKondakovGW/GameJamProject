@@ -9,6 +9,7 @@ public class DialoguesManager : MonoBehaviour
     public Text dialogText;
 
     public Animator animator;
+    public GameObject DialogPanel;
 
     private Queue<string> sentences;
     // Start is called before the first frame update
@@ -19,8 +20,8 @@ public class DialoguesManager : MonoBehaviour
     
     public void StartDialog(Dialog dialog)
     {
-        animator.SetBool("isOne", true);
-
+        //animator.SetBool("isOne", true);
+        DialogPanel.SetActive(true);
         Debug.Log("Talk to" + dialog.name);
 
         nameText.text = dialog.name;
@@ -50,6 +51,7 @@ public class DialoguesManager : MonoBehaviour
     public void EndDialog()
     {
         Debug.Log("End");
-        animator.SetBool("isOne", false);
+        DialogPanel.SetActive(false);
+        //animator.SetBool("isOne", false);
     }
 }
