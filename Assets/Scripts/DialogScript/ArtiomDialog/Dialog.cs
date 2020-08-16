@@ -11,6 +11,11 @@ public class Dialog : MonoBehaviour
 
     public DialogPhrase[] DialogMass;
 
+    public void CloseDialog()
+    {
+        _startphrase = -1;
+    }
+
     public void StartDialog()
     {
         _curentphrase = _startphrase; 
@@ -39,14 +44,15 @@ public class DialogPhrase
     [TextArea(3, 10)]
     public string text;
     public Answer[] answers;
-    public int nextPhrase;
+    //public int nextPhrase;
 }
 
 [System.Serializable]
 public class Answer
 {
     public string text;
-    public int toPhrase;    
+    public int toPhrase;
+    public QuestTrigger questTrigger;     
 }
 
     

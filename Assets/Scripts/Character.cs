@@ -15,16 +15,11 @@ public class Character : Unit
 
 
     public AudioSource StepSoud;
-    
-
-    //private CharState State
-    //{
-    //    get { return (CharState)animator.GetInteger("State"); }
-    //    set { animator.SetInteger("State", (int) value); }
-    //}
+    public Characters CharacterName;
+    public GameObject LevelControler;
+ 
 
     private Rigidbody2D rigitbody;
-    //private Animator animator;
     private SpriteRenderer sprite;
 
     private void Awake()

@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class QuestTrigger : MonoBehaviour
 {
-    public Quest quest;
+    public GameObject LevelConteroler;
+    public string Questname;
+    public int demandingQuestState;
+    public int NewQueststate;
 
-    public void CangeQuestState(int newstate)
+    public void Trigger()
     {
-        quest.currentstage = newstate; 
+        LevelConteroler.GetComponent<LevelControler>().Controler.ChangeQuestStage(Questname, NewQueststate, demandingQuestState); 
     }
 
     // Start is called before the first frame update

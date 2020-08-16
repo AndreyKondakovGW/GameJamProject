@@ -5,9 +5,16 @@ using UnityEngine;
 public class DialogTrigger : MonoBehaviour
 {
     public GameObject DialogData;
+    public GameObject DialoguesManager;
+    public bool PlayOnece;
 
     public void TriggerDialog()
     {
-        FindObjectOfType<DialoguesManager>().StartDialog(DialogData.transform.GetComponent<Dialog>());
+
+        DialoguesManager.GetComponent<DialoguesManager>().StartDialog(DialogData.transform.GetComponent<Dialog>());
+        if (PlayOnece)
+        {
+            DialogData.transform.GetComponent<Dialog>().CloseDialog();
+        }
     }
 }

@@ -19,13 +19,16 @@ public class DialoguesManager : MonoBehaviour
     
     public void StartDialog(Dialog dialog)
     {
-        DialogPanel.SetActive(true);
-        Debug.Log("Talk to" + dialog.name);
+        if (!dialog.EndofDialog())
+        {
+            DialogPanel.SetActive(true);
+            Debug.Log("Talk to" + dialog.name);
 
-        nameText.text = dialog.name;
+            nameText.text = dialog.name;
 
-        dialog.StartDialog();
-        DisplayNextPhrase(dialog);
+            dialog.StartDialog();
+            DisplayNextPhrase(dialog);
+        }
     }
 
     public void DisplayNextPhrase(Dialog dialog)
@@ -46,16 +49,20 @@ public class DialoguesManager : MonoBehaviour
                 var instance = GameObject.Instantiate(AnswerPerf.gameObject) as GameObject;
                 instance.transform.SetParent(Content, false);
                 instance.transform.Find("AnswerVariant").GetComponent<Text>().text = answer.text;
-                instance.transform.GetComponent<Button>().onClick.AddListener(delegate {ChangePhrace(dialog, answer.toPhrase);}); 
+                instance.transform.GetComponent<Button>().onClick.AddListener(delegate {ChangePhrace(dialog, answer.toPhrase, answer.questTrigger);}); 
             }
 
 
         }
         
     }
-    public void ChangePhrace(Dialog dialog, int id){
+    public void ChangePhrace(Dialog dialog, int id, QuestTrigger triggerquest){
         dialog.ChangePhracse(id);
         DisplayNextPhrase(dialog);
+        if (triggerquest != null)
+        {
+            triggerquest.Trigger();
+        }
 
     }
 

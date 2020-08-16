@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
-{
+{ 
+
     [SerializeField]
     private float speed = 2.0F;
 
@@ -12,7 +13,7 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        if (!target) target = FindObjectOfType<Character>().transform;
+        //if (!target) target = FindObjectOfType<Character>().transform;
 
     }
 
@@ -21,5 +22,10 @@ public class CameraController : MonoBehaviour
         Vector3 position = target.position;     position.z = -10.0F;
 
         transform.position = Vector3.Lerp(transform.position, position, speed * Time.deltaTime);
+    }
+
+    public void ChangeCharacter(Transform newCharacter)
+    {
+        target = newCharacter;    
     }
 }
