@@ -19,8 +19,6 @@ public class DialoguesManager : MonoBehaviour
     
     public void StartDialog(Dialog dialog)
     {
-        if (!dialog.EndofDialog())
-        {
             DialogPanel.SetActive(true);
             Debug.Log("Talk to" + dialog.name);
 
@@ -28,7 +26,6 @@ public class DialoguesManager : MonoBehaviour
 
             dialog.StartDialog();
             DisplayNextPhrase(dialog);
-        }
     }
 
     public void DisplayNextPhrase(Dialog dialog)

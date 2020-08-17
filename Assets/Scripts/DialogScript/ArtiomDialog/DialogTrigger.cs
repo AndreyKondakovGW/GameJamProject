@@ -8,13 +8,27 @@ public class DialogTrigger : MonoBehaviour
     public GameObject DialoguesManager;
     public bool PlayOnece;
 
+    public string NeededItem;
+    public GameObject ErrorDialogData;
+    public GameObject ErrorDialoguesManager; 
+
     public void TriggerDialog()
     {
-
-        DialoguesManager.GetComponent<DialoguesManager>().StartDialog(DialogData.transform.GetComponent<Dialog>());
-        if (PlayOnece)
+        if ((NeededItem == "") || (GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().ItemInHand == NeededItem))
         {
-            DialogData.transform.GetComponent<Dialog>().CloseDialog();
+            DialoguesManager.GetComponent<DialoguesManager>().StartDialog(DialogData.transform.GetComponent<Dialog>());
+            if (PlayOnece)
+            {
+                Debug.Log("Close");
+                DialogData.transform.GetComponent<Dialog>().CloseDialog();
+            }
+        }else
+        {
+            if (ErrorDialoguesManager != null)
+            {
+                ErrorDialoguesManager.GetComponent<DialoguesManager>().StartDialog(ErrorDialogData.transform.GetComponent<Dialog>());
+            }
+            
         }
     }
 }

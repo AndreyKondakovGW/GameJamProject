@@ -25,4 +25,14 @@ public class Slot : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
     }
+
+    public void TakeIteminHand()
+    {
+       foreach (Transform child in transform) 
+        {
+            var itemname = child.GetComponent<Spawn>().item.GetComponent<PickUp>().ItemName;
+            Debug.Log(itemname);
+            inventory.ItemInHand = itemname;
+        } 
+    }
 }

@@ -9,9 +9,14 @@ public class QuestTrigger : MonoBehaviour
     public int demandingQuestState;
     public int NewQueststate;
 
+    public string NeededItem;
+
     public void Trigger()
     {
-        LevelConteroler.GetComponent<LevelControler>().Controler.ChangeQuestStage(Questname, NewQueststate, demandingQuestState); 
+        if ((NeededItem == "") || (GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().ItemInHand == NeededItem))
+        {
+            LevelConteroler.GetComponent<LevelControler>().Controler.ChangeQuestStage(Questname, NewQueststate, demandingQuestState);
+        } 
     }
 
     // Start is called before the first frame update

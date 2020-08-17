@@ -12,7 +12,9 @@ public class Spawn : MonoBehaviour
     }
     public void SpawnDropedItem() 
     {
-        Vector2 playerPos = new Vector2(player.position.x + 2, player.position.y - 1);
-        Instantiate(item, playerPos, Quaternion.identity);
+        Vector2 playerPos = new Vector2(player.position.x, player.position.y + 2);
+        item.SetActive(true);
+        item.transform.Translate(playerPos);
+        //Instantiate(item, playerPos, Quaternion.identity);
     }
 }

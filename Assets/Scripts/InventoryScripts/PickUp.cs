@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    public string ItemName;
     private Inventory inventory;
     public GameObject slotButton;
     private void Start()
@@ -19,8 +20,11 @@ public class PickUp : MonoBehaviour
                 if (inventory.isFull[i] == false) 
                 {
                     inventory.isFull[i] = true;
-                    Instantiate(slotButton, inventory.slots[i].transform);
-                    Destroy(gameObject);
+                    //inventory.ItemInHand = ItemName;
+                    var item = Instantiate(slotButton, inventory.slots[i].transform);
+                    item.GetComponent<Spawn>().item = gameObject;
+                    gameObject.SetActive(false);
+                    //Destroy(gameObject);
                     break;
                 }
             }
