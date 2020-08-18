@@ -8,6 +8,7 @@ public class QuestTrigger : MonoBehaviour
     public string Questname;
     public int demandingQuestState;
     public int NewQueststate;
+    public GameObject[] AppearingObjects;
 
     public string NeededItem;
 
@@ -16,6 +17,10 @@ public class QuestTrigger : MonoBehaviour
         if ((NeededItem == "") || (GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().ItemInHand == NeededItem))
         {
             LevelConteroler.GetComponent<LevelControler>().Controler.ChangeQuestStage(Questname, NewQueststate, demandingQuestState);
+            foreach (var obj in AppearingObjects)
+            {
+                obj.SetActive(true);
+            }
         } 
     }
 

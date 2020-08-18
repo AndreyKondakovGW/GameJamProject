@@ -13,18 +13,17 @@ public class PickUp : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if ((other.CompareTag("Player"))&&(Input.GetKey(KeyCode.E))) 
+        if ((other.CompareTag("Player"))&&(Input.GetKeyDown(KeyCode.E))) 
         {
             for (int i = 0; i < inventory.slots.Length; i++) 
             {
                 if (inventory.isFull[i] == false) 
                 {
+                    Debug.Log(gameObject);
                     inventory.isFull[i] = true;
-                    //inventory.ItemInHand = ItemName;
                     var item = Instantiate(slotButton, inventory.slots[i].transform);
                     item.GetComponent<Spawn>().item = gameObject;
                     gameObject.SetActive(false);
-                    //Destroy(gameObject);
                     break;
                 }
             }
