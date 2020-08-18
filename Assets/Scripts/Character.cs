@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class Character : Unit
@@ -13,12 +14,17 @@ public class Character : Unit
     
     private bool IsGrounded = false;
 
+    private CharState State
+    {
+        get { return (CharState)animator.GetInteger("State"); }
+        set { animator.SetInteger("State", (int)value); }
+    }
 
     public AudioSource StepSoud;
     public Characters CharacterName;
     public GameObject LevelControler;
- 
 
+    private Animator animator;
     private Rigidbody2D rigitbody;
     private SpriteRenderer sprite;
 
@@ -26,7 +32,7 @@ public class Character : Unit
     {
         
         rigitbody = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
 
        
@@ -39,9 +45,10 @@ public class Character : Unit
 
     private void Update()
     {
-        //State = CharState.Stay;
+        
 
         if (Input.GetButton("Horizontal")) Run();
+        else State = CharState.Stay;
         if (Input.GetButtonDown("Jump")) Jump();
         if (Input.GetButtonDown("Horizontal")) StepSoud.Play();
         if (Input.GetButtonUp("Horizontal")) StepSoud.Stop();
@@ -53,9 +60,9 @@ public class Character : Unit
 
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
 
-        sprite.flipX = direction.x < 0.0F;
+        sprite.flipX = direction.x > 0.0F;
    
-        //State = CharState.Move;
+        State = CharState.Move;
     }
 
     private void Jump()
