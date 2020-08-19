@@ -7,12 +7,13 @@ public class Dialog : MonoBehaviour
 {
     public string name;
     private int _startphrase = 0;
-    private int _curentphrase;
+    public int _curentphrase;
 
     public DialogPhrase[] DialogMass;
 
     public void CloseDialog()
     {
+        Debug.Log("Close");
         _startphrase = -1;
     }
 

@@ -25,6 +25,8 @@ public class LevelControler : MonoBehaviour
             Camera.GetComponent<CameraController>().ChangeCharacter(Leo);
             Leo.gameObject.SetActive(true);
             Helen.gameObject.SetActive(false);
+            Helen.gameObject.GetComponent<Inventory>().InventoryObject.SetActive(false);
+            Leo.gameObject.GetComponent<Inventory>().InventoryObject.SetActive(true);
         }
         else
         {
@@ -33,6 +35,8 @@ public class LevelControler : MonoBehaviour
             Camera.GetComponent<CameraController>().ChangeCharacter(Helen);
             Helen.gameObject.SetActive(true);
             Leo.gameObject.SetActive(false);
+            Helen.gameObject.GetComponent<Inventory>().InventoryObject.SetActive(true);
+            Leo.gameObject.GetComponent<Inventory>().InventoryObject.SetActive(false);
         }
     } 
     // Start is called before the first frame update
@@ -51,16 +55,13 @@ public class LevelControler : MonoBehaviour
             Helen.gameObject.SetActive(false);
             Camera.GetComponent<CameraController>().ChangeCharacter(Leo);
         }
-        InfoData.text = "Нажмите J  чтоюы посмотреть задание";
+        InfoData.text = "Нажмите N чтобы открыть справку";
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C)){
-           ChangeCharacter(); 
-        }
     }
 }
 

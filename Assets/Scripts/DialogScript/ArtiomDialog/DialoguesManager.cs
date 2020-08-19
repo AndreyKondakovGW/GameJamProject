@@ -33,7 +33,8 @@ public class DialoguesManager : MonoBehaviour
         if (dialog.EndofDialog())
         {
            EndDialog(); 
-        }else
+        }
+            else
         {
             var phrace = dialog.GetPhrace();
             dialogText.text = phrace.text;

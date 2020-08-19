@@ -16,6 +16,10 @@ public class QuestTrigger : MonoBehaviour
     {
         if ((NeededItem == "") || (GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().ItemInHand == NeededItem))
         {
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>() != null)
+            {
+                Destroy(GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().LastItem);
+            }
             LevelConteroler.GetComponent<LevelControler>().Controler.ChangeQuestStage(Questname, NewQueststate, demandingQuestState);
             foreach (var obj in AppearingObjects)
             {
